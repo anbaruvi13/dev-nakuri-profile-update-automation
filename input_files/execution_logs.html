@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Execution Logs</title>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <style>
+        body{ font-family: Arial, Helvetica, sans-serif;
+        }
+        #log-container{
+        margin: 2% 5%;
+        border: 2px solid grey;
+        padding: 2%;
+        overflow-y: scroll;
+        height: 450px;
+
+
+
+        }
+
+    </style>
+</head>
+<body>
+<h3 align="center">Test Execution Logs</h3>
+<div id="log-container">
+    <pre id="logs"></pre>
+</div>
+<script>function generate_logs(){$("#logs").load("execution_report.log");
+setTimeout(generate_logs, 1000);
+
+} generate_logs();
+
+</script>
+
+</body>
+</html>
