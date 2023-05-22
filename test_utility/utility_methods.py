@@ -1,23 +1,22 @@
 from time import sleep
-from  selenium.webdriver.support.select import Select
+from selenium.webdriver.support.select import Select
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from page_objects.locators.design_page import Design_Status_Page
+
 
 class UtilMethods(object):
 
-    def __init__(self,driver):
+    def __init__(self, driver):
         self.driver = driver
         self.timeout = 30
-        self.wait = WebDriverWait(self.driver,30)
+        self.wait = WebDriverWait(self.driver, 30)
 
-
-    def dropdown_visible_text(self,locator,text):
-        #common method to select a value from the dropdown menu
+    def dropdown_visible_text(self, locator, text):
+        # common method to select a value from the dropdown menu
         # Explicit waits the execution until 30 sec or till the dropdown is visible
         try:
-            self.wait.until(EC.visibility_of_element_located((By.XPATH,locator)))
+            self.wait.until(EC.visibility_of_element_located((By.XPATH, locator)))
 
         except Exception as e:
             print(e)
@@ -26,57 +25,56 @@ class UtilMethods(object):
         sleep(0.5)
         select.select_by_visible_text(text)
 
-    def click_on_element(self,locator):
-    #Normal Click action Performed
+    def click_on_element(self, locator):
+        # Normal Click action Performed
         try:
-            self.wait.until(EC.element_to_be_clickable((By.XPATH,locator)))
+            self.wait.until(EC.element_to_be_clickable((By.XPATH, locator)))
 
         except Exception as e:
             print(e)
         self.driver.find_element_by_xpath(locator).click()
 
     def click_on_element_using_js(self, locator):
-    #Click action using Java Sciprt method
+        # Click action using Java Sciprt method
         try:
             self.wait.until(EC.element_to_be_clickable((By.XPATH, locator)))
 
         except Exception as e:
             print(e)
         sleep(0.5)
-        self.driver.execute_script("argument[0].click();",self.driver.find_element_by_xpath(locator))
+        self.driver.execute_script("argument[0].click();", self.driver.find_element_by_xpath(locator))
 
-
-    def send_keys(self,locator,value):
+    def send_keys(self, locator, value):
 
         try:
-            self.wait.until(EC.element_to_be_clickable((By.XPATH,locator)))
+            self.wait.until(EC.element_to_be_clickable((By.XPATH, locator)))
 
         except Exception as e:
             print(e)
         sleep(0.5)
         self.driver.find_element_by_xpath(locator).send_keys(value)
 
-    def clear_text_box(self,locator):
+    def clear_text_box(self, locator):
 
         try:
-            self.wait.until(EC.visibility_of_element_located((By.XPATH,locator)))
+            self.wait.until(EC.visibility_of_element_located((By.XPATH, locator)))
 
         except Exception as e:
             print(e)
         sleep(0.5)
         self.driver.find_element_by_xpath(locator).clear()
 
-    def get_text(self,locator):
-
+    def get_text(self, locator):
+        text = ""
         try:
-            self.wait.until(EC.visibility_of_element_located((By.XPATH,locator)))
+            self.wait.until(EC.visibility_of_element_located((By.XPATH, locator)))
             text = self.driver.find_element_by_xpath(locator).text
         except Exception as e:
             print(e)
             pass
         return text
 
-    def is_displayed(self,locator):
+    def is_displayed(self, locator):
         try:
             self.wait.until(EC.visibility_of_element_located((By.XPATH, locator)))
 
@@ -86,10 +84,9 @@ class UtilMethods(object):
         element = self.driver.find_element_by_xpath(locator)
         return element.is_displayed
 
-
-    def execution_time(self,end_time):
+    def execution_time(self, end_time):
         # Method to find the time taken for an TestCase to Execute
-        # If end time is converted into minitus from seconds
+        # If end time is converted into minus from seconds
         if end_time > 60:
             mins = int(end_time / 60)
             secs = end_time % 60
