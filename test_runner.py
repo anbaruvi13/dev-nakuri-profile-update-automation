@@ -1,6 +1,6 @@
 import unittest
 from HtmlTestRunner import HTMLTestRunner
-from test_scripts import t001_home_page
+from test_scripts import t001_home_page,t002_hotels_booking_page
 import os
 from shutil import copyfile
 
@@ -18,9 +18,9 @@ os.makedirs("reports/", exist_ok=True)
 class MyTestSuite(unittest.TestCase):
 
     def test_suite(self):
-        design_status_page_script = unittest.TestLoader().loadTestsFromTestCase(t001_home_page.TestHomePage)
+        search_page_script = unittest.TestLoader().loadTestsFromTestCase(t002_hotels_booking_page.TestHotelPage)
 
-        suite = unittest.TestSuite(design_status_page_script)
+        suite = unittest.TestSuite(search_page_script)
 
         runner = HTMLTestRunner(output='reports', report_title='Test Case Execution Report',
                                 report_name='TestExecutionReport', verbosity=0, add_timestamp=True,
