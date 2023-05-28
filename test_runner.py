@@ -1,15 +1,8 @@
-import time
 import unittest
 from HtmlTestRunner import HTMLTestRunner
-
-from page_objects.pages.database_pages.report_to_database import ReportTODatabase
 from test_scripts import t001_home_page
-from test_utility import create_log
-from multiprocessing import Process
-import sys
 import os
 from shutil import copyfile
-from page_objects.pages.excel_reports_write import excel_write
 
 use_browser = os.environ.get("BROWSER")
 print("Launching BROWSER: ", use_browser)
@@ -23,25 +16,18 @@ os.makedirs("reports/", exist_ok=True)
 
 
 class MyTestSuite(unittest.TestCase):
-    if use_browser == "chrome":
-        def test_suite(self):
-            start_time = time.time()
-            design_status_page_script = unittest.TestLoader().loadTestsFromTestCase(t001_home_page.TestHomePage)
 
-            suite = unittest.TestSuite(design_status_page_script)
+    def test_suite(self):
+        design_status_page_script = unittest.TestLoader().loadTestsFromTestCase(t001_home_page.TestHomePage)
 
-            runner = HTMLTestRunner(output='reports', report_title='Test Case Execution Report',
-                                    report_name='TestExecutionReport', verbosity=0, add_timestamp=True,
-                                    combine_reports=False)
-            runner.run(unittest.TestSuite(suite))
+        suite = unittest.TestSuite(design_status_page_script)
 
-            # excel_obj = excel_write.ExcelWrite()
-            # excel_obj.excel_write()
-            # self.report_obj = ReportTODatabase()
-            # self.report_obj.insert_report_to_database(float(time.time() - start_time))
+        runner = HTMLTestRunner(output='reports', report_title='Test Case Execution Report',
+                                report_name='TestExecutionReport', verbosity=0, add_timestamp=True,
+                                combine_reports=False)
+        runner.run(unittest.TestSuite(suite))
 
 
 if __name__ == '__main__':
-    if use_browser == 'chrome':
-        obj = MyTestSuite()
-        p1 = Process(target=obj.test_suite())
+    obj = MyTestSuite()
+    obj.test_suite()
