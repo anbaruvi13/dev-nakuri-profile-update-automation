@@ -32,7 +32,7 @@ class EnvironmentSetup(unittest.TestCase):
             create_log.create_log("Chrome opened successfully")
 
         self.driver.maximize_window()
-        base_url = "https://adactinhotelapp.com/"
+        base_url = "https://www.naukri.com/"
         self.driver.get(base_url)
         create_log.create_log("Home Page Loading...")
         self.driver.implicitly_wait(10)
