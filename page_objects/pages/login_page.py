@@ -1,3 +1,5 @@
+import os
+
 from test_utility.utility_methods import UtilMethods
 from page_objects.locators.login_page_locator import LoginPageLocator
 
@@ -41,8 +43,8 @@ class LoginPage(object):
         return result
 
     def login_user_1(self):
-        user_name = "anbaruvi95@gmail.com"
-        password = "anbaruvi05@G"
+        user_name = os.environ['Nakuri_User_Name']
+        password = os.environ['Nakuri_Password']
         self.login(user_name,password)
 
 

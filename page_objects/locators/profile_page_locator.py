@@ -9,4 +9,5 @@ class ProfilePageLocator:
 
     view_profile_button_xpath = "//div[@class='nI-gNb-drawer__icon']"
 
+    view_profile_in_home_page_button_xpath = "//a[normalize-space()='View profile']"
     view_profile_logout_xpath = "//a[@title='Logout']"

@@ -1,6 +1,4 @@
 pip
-selenium               ==4.1.0
-unittest-xml-reporting ==3.2.0
-urllib3                ==1.26.8
-webdriver-manager      ==3.5.2
+selenium
+unittest-xml-reporting
 html-testRunner

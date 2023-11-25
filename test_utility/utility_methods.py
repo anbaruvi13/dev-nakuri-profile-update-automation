@@ -21,7 +21,7 @@ class UtilMethods(object):
         except Exception as e:
             print(e)
 
-        select = Select(self.driver.find_element_by_xpath(locator))
+        select = Select(self.driver.find_element(By.XPATH, locator))
         sleep(0.5)
         select.select_by_visible_text(text)
 
@@ -32,17 +32,17 @@ class UtilMethods(object):
 
         except Exception as e:
             print(e)
-        self.driver.find_element_by_xpath(locator).click()
+        self.driver.find_element(By.XPATH, locator).click()
 
     def click_on_element_using_js(self, locator):
-        # Click action using Java Sciprt method
+        # Click action using JavaScript method
         try:
             self.wait.until(EC.element_to_be_clickable((By.XPATH, locator)))
 
         except Exception as e:
             print(e)
         sleep(0.5)
-        self.driver.execute_script("argument[0].click();", self.driver.find_element_by_xpath(locator))
+        self.driver.execute_script("argument[0].click();", self.driver.find_element(By.XPATH, locator))
 
     def send_keys(self, locator, value):
 
@@ -52,7 +52,7 @@ class UtilMethods(object):
         except Exception as e:
             print(e)
         sleep(0.5)
-        self.driver.find_element_by_xpath(locator).send_keys(value)
+        self.driver.find_element(By.XPATH,locator).send_keys(value)
 
     def clear_text_box(self, locator):
 
@@ -62,13 +62,24 @@ class UtilMethods(object):
         except Exception as e:
             print(e)
         sleep(0.5)
-        self.driver.find_element_by_xpath(locator).clear()
+        self.driver.find_element(By.XPATH, locator).clear()
+
+    def send_keys_with_clear_text(self, locator, value):
+
+        try:
+            self.wait.until(EC.element_to_be_clickable((By.XPATH, locator)))
+
+        except Exception as e:
+            print(e)
+        sleep(0.5)
+        self.driver.find_element(By.XPATH, locator).clear()
+        self.driver.find_element(By.XPATH, locator).send_keys(value)
 
     def get_text(self, locator):
         text = ""
         try:
             self.wait.until(EC.visibility_of_element_located((By.XPATH, locator)))
-            text = self.driver.find_element_by_xpath(locator).text
+            text = self.driver.find_element(By.XPATH,locator).text
         except Exception as e:
             print(e)
             pass
@@ -81,7 +92,7 @@ class UtilMethods(object):
         except Exception as e:
             print(e)
         sleep(0.5)
-        element = self.driver.find_element_by_xpath(locator)
+        element = self.driver.find_element(By.XPATH,locator)
         return element.is_displayed
 
     def execution_time(self, end_time):

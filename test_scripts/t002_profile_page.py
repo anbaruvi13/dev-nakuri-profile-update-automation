@@ -3,6 +3,7 @@ from test_environment.environment_setup import EnvironmentSetup
 import time
 from test_utility import create_log, screen_shots
 from test_utility.utility_methods import UtilMethods
+from page_objects.pages.profile_page import ProfilePage
 
 
 class TestHotelPage(EnvironmentSetup):
@@ -11,6 +12,7 @@ class TestHotelPage(EnvironmentSetup):
         self.startTime = time.time()
         self.util_obj = UtilMethods(self.driver)
         self.login_page_obj = LoginPage(self.driver)
+        self.profile_page_obj = ProfilePage(self.driver)
         self.result = None
         create_log.create_log(self.id() + ' ' + 'Started...')
 
@@ -28,5 +30,5 @@ class TestHotelPage(EnvironmentSetup):
         self.assertTrue(self.result)
 
     def test_002_change_profile_head_line(self):
-        self.result = self.hotel_page_obj.change_profile_head_line()
+        self.result = self.profile_page_obj.change_profile_head_line()
         self.assertTrue(self.result)
